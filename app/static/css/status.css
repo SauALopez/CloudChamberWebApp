@@ -1,0 +1,30 @@
+body {
+    margin: 10px;
+
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .status.on:before {
+    background-color: #94E185;
+    border-color: #78D965;
+    box-shadow: 0px 0px 7px 1px #94E185;
+  }
+  .status.off:before {
+    background-color: #C9404D;
+    border-color: #C42C3B;
+    box-shadow: 0px 0px 7px 1px #C9404D;
+  }
+  .status:before {
+    content: ' ';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+  }
