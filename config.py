@@ -8,8 +8,9 @@ class Config(object):
     MQTT_PORT = 8883
     MQTT_USER = 'USER_NAME'
     MQTT_PWD = 'USER_PASSWORD'
+    MQTT_TLS = True
     #MQTT TOPICS TO SUBSCRIBE
-    MQTT_TOPICS = ['comandsweb',
+    MQTT_TOPICS = ['commandsweb',
                      'value1', 
                      'value2',
                      'status']

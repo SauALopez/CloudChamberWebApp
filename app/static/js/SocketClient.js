@@ -1,14 +1,14 @@
 
-//const topics to formard messages
+//const topics to forward messages
 const TOPICS = {
-    COMANDS : 'comands',
-    COMANDSWEB : 'comandsweb',
+    COMMANDS : 'commands',
+    COMMANDSWEB : 'commandsweb',
     STATUS : 'status',
     VALUE1 : 'value1',
     VALUE2 : 'value2'
 };
-//Const Keys and messages that are send 
-//to the web server to forword it to de micro by mqtt
+//Const Keys and commands that are send 
+//to the web server to forward it to de micro by mqtt
 const KEYS = {
     WEB : 'EcFmUsAcCL',
     CLIENT : 'EcFmUsAcW',
@@ -27,13 +27,13 @@ var firstvalue1 = true;
 var firstvalue2 = true;
 var timestampAlive = Date.now();
 
-//SocketIo connect  event, send the ALIVE comand to micro
+//SocketIo connect  event, send the ALIVE command to micro
 socket.on('connect', function () {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.WEB});
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.SYNC});    
     timestampAlive = Date.now()/1000;
 });
@@ -45,39 +45,39 @@ socket.on('on_message', function(message){
 
 //Jquery handlers of control buttons
 $("#General").on('click', function (event) {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.GENERAL});  
 });
 $("#12V").on('click', function (event) {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.P12});  
 });
 $("#5V").on('click', function (event) {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.P5});  
 });
 $("#Vent").on('click', function (event) {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.VENT});  
 });
 $("#High").on('click', function (event) {
-    socket.emit('mqtt_comand', {
-        topic: TOPICS.COMANDS,
+    socket.emit('mqtt_command', {
+        topic: TOPICS.COMMANDS,
         message: KEYS.HIGH});  
 });
 
 //Custom function, received the message and topic
 //Determines the action to do
-//Alive comand received, status  or new values
+//Alive command received, status  or new values
 function onMessageArrived(message) {
-    if (message.destinationName == TOPICS.COMANDSWEB) {
+    if (message.destinationName == TOPICS.COMMANDSWEB) {
         if (message.payloadString == KEYS.CLIENT) {
-            socket.emit('mqtt_comand', {
-                topic: TOPICS.COMANDS,
+            socket.emit('mqtt_command', {
+                topic: TOPICS.COMMANDS,
                 message: KEYS.WEB});
             timestampAlive = Date.now()/1000;
         }
@@ -185,11 +185,11 @@ function StatusIndicatorUpdate(id, number, value){
 var alivecheck = setInterval(function(){
     checktime = Date.now() / 1000 - timestampAlive;
     if (checktime >11){
-        socket.emit('mqtt_comand', {
-            topic: TOPICS.COMANDS,
+        socket.emit('mqtt_command', {
+            topic: TOPICS.COMMANDS,
             message: KEYS.WEB});
-        socket.emit('mqtt_comand',{
-            topic : TOPICS.COMANDS,
+        socket.emit('mqtt_command',{
+            topic : TOPICS.COMMANDS,
             message: KEYS.SYNC
         });
         $("#alert").addClass("alert alert-danger");

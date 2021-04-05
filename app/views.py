@@ -20,7 +20,8 @@ def mqtt_comand(comand):
 
 MQTT_client = mqtt.Client(client_id="masterweb", clean_session=True)
 MQTT_client.on_message = on_message
-MQTT_client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS)
+if (app.config['MQTT_TLS']):
+    MQTT_client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS)
 MQTT_client.username_pw_set(app.config['MQTT_USER'], app.config['MQTT_PWD'])
 MQTT_client.connect(host=app.config['MQTT_SERVER'], port=app.config['MQTT_PORT'])
 
