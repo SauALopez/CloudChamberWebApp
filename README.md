@@ -1,7 +1,5 @@
 # CloudChamberWebApp
 Cloud Chamber - DashBoard with real time data and control.
-# CloudChamberWebApp
-Cloud Chamber - DashBoard with real time data and control.
 ## Description
 This proyect consist in a WebApp(**DashBoard**), constructed with **FLASK** as framework that can be deployable in **FREE** webapp platforms options like (*AppEngine, Heroku, App Plataform, etc*) that uses WebSocket (**SocketIo**) to enable real-time and bidirectional data in the DashBoard.
 
@@ -13,7 +11,7 @@ The WebApp forward the messages from MQTT between the DashBoard and the ESP32 by
 
 ## WebPage - DashBoard
 You can see an example deploy in Heroku [link](https://camaradeniebla.herokuapp.com/).
-![gif](https://i.ibb.co/P6MkDPn/Peek-2021-04-05-00-33.gif)
+![gif](https://i.imgur.com/eg260NE.gif)
 
 
 ## Installation
